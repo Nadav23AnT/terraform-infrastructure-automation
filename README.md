@@ -1,6 +1,6 @@
 
 # Terraform AWS Cloud Infrastructure Automation
-
+![Project Image](./terraform-project.png)
 ## Description
 
 This **Terraform project** automates the provisioning of a comprehensive AWS cloud infrastructure. The created infrastructure includes setting up VPC, Internet Gateways, Routes, Subnets, and Security Groups. In addition to these networking components, the configuration scripts in this project automatically attach an Elastic IP to the network interface. 
