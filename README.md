@@ -10,10 +10,9 @@ The primary objective of this project is to facilitate the quick and efficient d
 ## Table of Contents
 
 - [Getting Started](#Quick-Start)
-  - [Prerequisites](###prerequisites)
-  - [Installation](###installation)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
 - [Terraform Configuration](#installation)
-- [Examples](#examples)
 
 ### Prerequisites
 
@@ -24,7 +23,7 @@ List any prerequisites that users need to have in order to use your project. For
 
 ## Quick-Start
 
-For a quick start, clone the repository and follow the setup instructions mentioned in the [Installation](###Installation) section of this document. 
+For a quick start, clone the repository and follow the setup instructions mentioned in the [Installation](#Installation) section of this document. 
 
 ---
 
@@ -38,7 +37,6 @@ For a quick start, clone the repository and follow the setup instructions mentio
 - **Apache2 Setup**: Installation and configuration of the Apache2 web server on the Ubuntu server.
 
 Whether you are looking to quickly deploy a web server or set up a complex network for your applications on AWS, this Terraform project can be a starting point to automate and streamline the entire process. 
-
 
 ### Installation
 
@@ -56,3 +54,6 @@ terraform init
 
 # Apply the configuration
 terraform apply
+```
+![featured](https://github.com/Nadav23AnT/terraform-infrastructure-automation/assets/71144691/14fda042-5ea6-40ef-a366-da6e64303bbb)
+![Project Image](./terraform-project.png)
