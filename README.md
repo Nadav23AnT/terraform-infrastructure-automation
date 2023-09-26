@@ -49,7 +49,7 @@ Explain how to install your project, including any specific commands or steps. F
 git clone https://github.com/Nadav23AnT/terraform-infrastructure-automation.git
 
 # Change into the project directory
-cd your-terraform-project
+cd terraform-infrastructure-automation
 
 # Initialize Terraform
 terraform init
