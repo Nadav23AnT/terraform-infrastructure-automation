@@ -50,7 +50,8 @@ git clone https://github.com/Nadav23AnT/terraform-infrastructure-automation.git
 cd terraform-infrastructure-automation
 
 # Initialize Terraform
-terraform init
+╰─ terraform init -backend-config="access_key={your-access-key}" 
+                  -backend-config="secret_key={your-secret-key}"
 
 # Apply the configuration
 terraform apply
