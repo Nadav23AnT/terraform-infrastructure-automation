@@ -38,7 +38,7 @@ resource "aws_route_table" "dev-route-01" {
 
   route {
     ipv6_cidr_block        = "::/0"
-    egress_only_gateway_id = aws_internet_gateway.dev-igw.id
+    gateway_id = aws_internet_gateway.dev-igw.id
   }
 
   tags = {
@@ -115,13 +115,36 @@ resource "aws_security_group" "allow_web" {
 
 resource "aws_network_interface" "web_server_nic" {
   subnet_id       = aws_subnet.subnet-01.id
-  private_ips     = ["10.0.0.50"]
+  private_ips     = ["10.0.1.50"]
   security_groups = [aws_security_group.allow_web.id]
 }
 
 resource "aws_eip" "lb" {
   domain                        = "vpc"
   network_interface             = aws_network_interface.web_server_nic.id
-  associate_with_private_ip     = "10.0.1.50" # assign one from 10.0.0.50
+  associate_with_private_ip     = "10.0.1.50" 
   depends_on                    = [aws_internet_gateway.dev-igw]
+}
+
+resource "aws_instance" "web-server-instance" {
+  ami = "ami-053b0d53c279acc90"
+  instance_type = "t2.micro"
+  availability_zone = "us-east-1a"
+  key_name = "ec2-01-kp"
+
+  network_interface {
+    device_index = 0
+    network_interface_id = aws_network_interface.web_server_nic.id
+  }
+
+  user_data = <<-EOF
+        #!/bin/bash
+        sudo apt update -y
+        sudo apt install apache2 -y
+        sudo systemctl start apache2
+        sudo bash -c 'echo web server works > /var/www/html/index.html'
+        EOF
+  tags = {
+    Name = "web-server"
+  }
 }

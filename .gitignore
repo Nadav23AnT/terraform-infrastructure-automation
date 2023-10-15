@@ -1,3 +1,4 @@
 /cred.txt
 .terraform
 /.terraform.lock.hcl
+/ec2-01-kp.pem
