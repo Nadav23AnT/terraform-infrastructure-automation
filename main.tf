@@ -115,14 +115,14 @@ resource "aws_security_group" "allow_web" {
 
 resource "aws_network_interface" "web_server_nic" {
   subnet_id       = aws_subnet.subnet-01.id
-  private_ips     = ["10.0.1.50"]
+  private_ips     = ["10.0.1.52"]
   security_groups = [aws_security_group.allow_web.id]
 }
 
 resource "aws_eip" "lb" {
   domain                        = "vpc"
   network_interface             = aws_network_interface.web_server_nic.id
-  associate_with_private_ip     = "10.0.1.50" 
+  associate_with_private_ip     = "10.0.1.52" 
   depends_on                    = [aws_internet_gateway.dev-igw]
 }
 
@@ -137,13 +137,7 @@ resource "aws_instance" "web-server-instance" {
     network_interface_id = aws_network_interface.web_server_nic.id
   }
 
-  user_data = <<-EOF
-        #!/bin/bash
-        sudo apt update -y
-        sudo apt install apache2 -y
-        sudo systemctl start apache2
-        sudo bash -c 'echo web server works > /var/www/html/index.html'
-        EOF
+  user_data = "${file("install_apache.sh")}"
   tags = {
     Name = "web-server"
   }
